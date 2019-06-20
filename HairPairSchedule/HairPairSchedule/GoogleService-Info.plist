@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>885236781361-t7ikb5gfuj6ffnb29h180hm0botcljp6.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.885236781361-t7ikb5gfuj6ffnb29h180hm0botcljp6</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBUfWW_COQNipE9rzWf1p_bBmAJCo14hnA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>885236781361</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>edu.umd.juvo1998</string>
+	<key>PROJECT_ID</key>
+	<string>hairpairschedule</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hairpairschedule.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:885236781361:ios:9db8ca0646f2d859</string>
+	<key>DATABASE_URL</key>
+	<string>https://hairpairschedule.firebaseio.com</string>
+</dict>
+</plist>
