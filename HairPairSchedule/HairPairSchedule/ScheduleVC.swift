@@ -7,4 +7,16 @@
 //
 
 import Foundation
+import CoreData
 import UIKit
+import Firebase
+
+class ScheduleVC: UIViewController {
+    
+    var user: User?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("ScheduleVC: viewDidLoad()")
+    }
+}

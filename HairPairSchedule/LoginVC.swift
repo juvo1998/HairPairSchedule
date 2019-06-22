@@ -45,7 +45,7 @@ class LoginVC: UIViewController {
                 if username == usernameText && password == passwordText {
                     let validUser = User(id: id!, name: name, username: username, password: password)
                     self.user = validUser
-                    print("Valid user found with name: \(name)")
+                    self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
                     return
                 }
             }
@@ -54,6 +54,16 @@ class LoginVC: UIViewController {
             let alert = UIAlertController(title: "Could not verify", message: "Your username or password was entered incorrectly.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ScheduleSegue":
+            let scheduleVC = segue.destination as! ScheduleVC
+            scheduleVC.user = self.user
+        default:
+            print("LoginVC: default case")
         }
     }
 }
