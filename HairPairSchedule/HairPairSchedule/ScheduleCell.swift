@@ -15,6 +15,4 @@ class ScheduleCell: UITableViewCell {
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var price: UILabel!
-    
-    
 }

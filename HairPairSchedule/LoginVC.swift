@@ -23,6 +23,7 @@ class LoginVC: UIViewController {
         print("LoginVC: viewDidLoad()")
         
         self.firebase = Database.database().reference()
+        
     }
     
     @IBAction func login(_ sender: UIButton) {
@@ -45,7 +46,7 @@ class LoginVC: UIViewController {
                 if username == usernameText && password == passwordText {
                     let validUser = User(id: id!, name: name, username: username, password: password)
                     self.user = validUser
-                    self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
+                    self.performSegue(withIdentifier: "LoadingSegue", sender: self)
                     return
                 }
             }
@@ -59,9 +60,9 @@ class LoginVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "ScheduleSegue":
-            let scheduleVC = segue.destination as! ScheduleVC
-            scheduleVC.user = self.user
+        case "LoadingSegue":
+            let loadingVC = segue.destination as! LoadingVC
+            loadingVC.user = self.user
         default:
             print("LoginVC: default case")
         }
