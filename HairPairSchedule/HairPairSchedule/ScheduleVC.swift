@@ -26,10 +26,11 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ScheduleVC: viewDidLoad()")
+        
+        // self.navigationItem.hidesBackButton = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,12 +44,16 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.time.text = appointment.time
         cell.name.text = appointment.name
         cell.price.text = "$\(appointment.price)"
-        // TODO: cell.details.text = appointment.details
+        cell.details.text = appointment.details
         
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

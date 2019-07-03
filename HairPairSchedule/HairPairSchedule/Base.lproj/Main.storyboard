@@ -77,7 +77,7 @@
                         <viewLayoutGuide key="safeArea" id="tZw-Pd-B2q"/>
                     </view>
                     <connections>
-                        <segue destination="BFo-eN-2sZ" kind="show" identifier="ScheduleSegue" id="8FJ-b6-vbM"/>
+                        <segue destination="BFo-eN-2sZ" kind="show" identifier="ScheduleSegue" animates="NO" id="8FJ-b6-vbM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyR-fj-6FQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -121,20 +121,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETAILS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SqR-G8-ogQ">
+                                                    <rect key="frame" x="20" y="148.5" width="374" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="zm5-EL-8Jy" firstAttribute="leading" secondItem="qSH-Tr-sE6" secondAttribute="leadingMargin" constant="186" id="0QK-Ad-CMQ"/>
+                                                <constraint firstItem="SqR-G8-ogQ" firstAttribute="leading" secondItem="qSH-Tr-sE6" secondAttribute="leadingMargin" id="1CM-4y-GiV"/>
+                                                <constraint firstItem="SqR-G8-ogQ" firstAttribute="centerX" secondItem="qSH-Tr-sE6" secondAttribute="centerX" id="2B6-vO-bpm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="qDD-oS-UXy" secondAttribute="trailing" constant="150" id="33Z-Ly-I7E"/>
                                                 <constraint firstItem="zm5-EL-8Jy" firstAttribute="top" secondItem="LUe-No-ria" secondAttribute="bottom" constant="31" id="38a-mr-MXJ"/>
                                                 <constraint firstItem="LUe-No-ria" firstAttribute="trailing" secondItem="qSH-Tr-sE6" secondAttribute="trailingMargin" id="FQl-eb-A8v"/>
                                                 <constraint firstItem="zm5-EL-8Jy" firstAttribute="trailing" secondItem="qSH-Tr-sE6" secondAttribute="trailingMargin" id="QNF-mT-yq2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SqR-G8-ogQ" secondAttribute="trailing" id="Y5L-Za-ckj"/>
                                                 <constraint firstItem="LUe-No-ria" firstAttribute="top" secondItem="qSH-Tr-sE6" secondAttribute="topMargin" id="Y9J-ZF-Asu"/>
+                                                <constraint firstItem="SqR-G8-ogQ" firstAttribute="bottom" secondItem="qSH-Tr-sE6" secondAttribute="bottomMargin" id="c8u-Ar-8gv"/>
                                                 <constraint firstItem="LUe-No-ria" firstAttribute="leading" secondItem="qSH-Tr-sE6" secondAttribute="leadingMargin" id="fcf-XH-h9X"/>
                                                 <constraint firstItem="qDD-oS-UXy" firstAttribute="leading" secondItem="qSH-Tr-sE6" secondAttribute="leadingMargin" id="nXe-iG-vi7"/>
                                                 <constraint firstItem="qDD-oS-UXy" firstAttribute="top" secondItem="LUe-No-ria" secondAttribute="bottom" constant="31" id="wdQ-LG-375"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="details" destination="SqR-G8-ogQ" id="4Da-k9-e6g"/>
                                             <outlet property="name" destination="qDD-oS-UXy" id="Piu-Mb-WSh"/>
                                             <outlet property="price" destination="zm5-EL-8Jy" id="kr3-X6-pQX"/>
                                             <outlet property="time" destination="LUe-No-ria" id="Fic-YY-eay"/>
@@ -152,6 +163,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SPR-If-PbI"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ph3-1V-bLM">
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="eYJ-fm-H1z">
+                            <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="logout:" destination="BFo-eN-2sZ" id="vMR-TT-vrY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="i3a-mb-HeN" id="FmB-IJ-rKj"/>
                     </connections>

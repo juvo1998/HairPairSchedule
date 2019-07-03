@@ -22,8 +22,8 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         print("LoginVC: viewDidLoad()")
         
+        self.navigationItem.hidesBackButton = true
         self.firebase = Database.database().reference()
-        
     }
     
     @IBAction func login(_ sender: UIButton) {
