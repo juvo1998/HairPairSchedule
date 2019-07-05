@@ -23,6 +23,7 @@ class LoadingVC: UIViewController {
     var firebase: DatabaseReference?
     var user: User?
     var appointments = [Appointment]()
+    var date: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,31 +37,9 @@ class LoadingVC: UIViewController {
         activity.startAnimating()
         self.view.addSubview(activity)
         
-        // Start loading or creating entries in Firebase
-        let date = getDate()
+        self.date = getDate()
         self.firebase = Database.database().reference()
-        self.firebase!.child("schedule").child(date).observeSingleEvent(of: .value) { (snapshot) in
-            // First, iterate through the times to see if those times exist
-            var counter = snapshot.childrenCount
-            for time in self.times {
-                
-                // If time doesn't exist, create it with empty entries
-                if !snapshot.hasChild(time) {
-                    print("Setting to firebase")
-                    self.firebase!.child("schedule").child(date).child(time).child("name").setValue("a")
-                    self.firebase!.child("schedule").child(date).child(time).child("price").setValue(" ")
-                    self.firebase!.child("schedule").child(date).child(time).child("details").setValue(" ")
-                    print("Fin set")
-                    
-                    counter = counter + 1
-                    print(counter)
-                    if counter == self.times.count {
-                        print("Finished creating all empty slots")
-                        // self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
-                    }
-                }
-            }
-        }
+        load()
         
         // Note that this performSegue() should be only done after the last load of data is finished
         // performSegue(withIdentifier: "ScheduleSegue", sender: self)
@@ -74,6 +53,54 @@ class LoadingVC: UIViewController {
             scheduleVC.appointments = self.appointments
         default:
             print("LoadingVC: default case")
+        }
+    }
+    
+    func load() {
+        // Start loading or creating entries in Firebase
+        self.firebase!.child("schedule").child(self.date!).observeSingleEvent(of: .value) { (snapshot) in
+            // First, iterate through the times to see if those times exist
+            var counter = 0
+            for time in self.times {
+                if !snapshot.hasChild(time) {
+                    print("Writing empty entry to Firebase...")
+                    self.firebase!.child("schedule").child(self.date!).child(time).child("name").setValue("")
+                    self.firebase!.child("schedule").child(self.date!).child(time).child("price").setValue(0)
+                    self.firebase!.child("schedule").child(self.date!).child(time).child("details").setValue("")
+                }
+                
+                counter = counter + 1
+                print("Finished writing entry number: \(counter)")
+                if counter == self.times.count {
+                    print("Finished creating all empty slots")
+                    self.readData()
+                }
+            }
+        }
+    }
+    
+    func readData() {
+        print("Starting to read into appointments array...")
+        self.firebase!.child("schedule").child(self.date!).observeSingleEvent(of: .value) { (snapshot) in
+            var counter = 0
+            for time in self.times {
+                print("Reading from Firebase...")
+                let name = snapshot.childSnapshot(forPath: "\(time)/name").value as! String
+                let price = snapshot.childSnapshot(forPath: "\(time)/price").value as! Double
+                let details = snapshot.childSnapshot(forPath: "\(time)/details").value as! String
+                
+                print("Putting time into Firebase: \(time)")
+                let readableTime = self.getReadableTime(time)
+                let appt = Appointment(time: readableTime, date: self.date!, name: name, price: price, details: details)
+                self.appointments.append(appt)
+                
+                counter = counter + 1
+                print("Finished reading entry number: \(counter)")
+                if counter == self.times.count {
+                    print("Done with all loading!")
+                    self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
+                }
+            }
         }
     }
     
@@ -126,7 +153,7 @@ class LoadingVC: UIViewController {
             return "12:00 PM"
         case "1230":
             return "12:30 PM"
-        case "1300" :
+        case "1300":
             return "1:00 PM"
         case "1330":
             return "1:30 PM"
@@ -152,7 +179,7 @@ class LoadingVC: UIViewController {
             return "6:30 PM"
         case "1900":
             return "7:00 PM"
-        case "19:30":
+        case "1930":
             return "7:30 PM"
         default:
             print("LoadingVC: default")
