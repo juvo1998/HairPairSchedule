@@ -25,7 +25,7 @@
 /* Begin PBXFileReference section */
 		02A159936D3568875F69814D /* Pods-HairPairSchedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HairPairSchedule.debug.xcconfig"; path = "Target Support Files/Pods-HairPairSchedule/Pods-HairPairSchedule.debug.xcconfig"; sourceTree = "<group>"; };
 		3A885EA922BC5021009FDBDD /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
-		3A9D8D2E22BC41C8002F4F65 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = SOURCE_ROOT; };
+		3A9D8D2E22BC41C8002F4F65 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3A9D8D3022BC4826002F4F65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AAA0F3722CBBF5800E2FD6E /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
 		3ADCC7A622BC3EFD00F9E580 /* HairPairSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairPairSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
