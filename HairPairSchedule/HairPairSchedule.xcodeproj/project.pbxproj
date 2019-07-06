@@ -11,6 +11,7 @@
 		3A9D8D2F22BC41C8002F4F65 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8D2E22BC41C8002F4F65 /* LoginVC.swift */; };
 		3A9D8D3122BC4826002F4F65 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8D3022BC4826002F4F65 /* User.swift */; };
 		3AAA0F3822CBBF5800E2FD6E /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAA0F3722CBBF5800E2FD6E /* LoadingVC.swift */; };
+		3ACA4F9E22D12948004BDB4B /* AppointmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACA4F9D22D12948004BDB4B /* AppointmentVC.swift */; };
 		3ADCC7AA22BC3EFD00F9E580 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCC7A922BC3EFD00F9E580 /* AppDelegate.swift */; };
 		3ADCC7AF22BC3EFD00F9E580 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3ADCC7AD22BC3EFD00F9E580 /* Main.storyboard */; };
 		3ADCC7B222BC3EFD00F9E580 /* HairPairSchedule.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3ADCC7B022BC3EFD00F9E580 /* HairPairSchedule.xcdatamodeld */; };
@@ -28,6 +29,7 @@
 		3A9D8D2E22BC41C8002F4F65 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		3A9D8D3022BC4826002F4F65 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AAA0F3722CBBF5800E2FD6E /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingVC.swift; sourceTree = "<group>"; };
+		3ACA4F9D22D12948004BDB4B /* AppointmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentVC.swift; sourceTree = "<group>"; };
 		3ADCC7A622BC3EFD00F9E580 /* HairPairSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HairPairSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ADCC7A922BC3EFD00F9E580 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3ADCC7AE22BC3EFD00F9E580 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				3AAA0F3722CBBF5800E2FD6E /* LoadingVC.swift */,
 				3A885EA922BC5021009FDBDD /* ScheduleVC.swift */,
 				3AFC674822BE9CD000E88D55 /* ScheduleCell.swift */,
+				3ACA4F9D22D12948004BDB4B /* AppointmentVC.swift */,
 				3A9D8D3022BC4826002F4F65 /* User.swift */,
 				3AFC674A22BE9F5400E88D55 /* Appointment.swift */,
 				3ADCC7B322BC3EFE00F9E580 /* Assets.xcassets */,
@@ -228,6 +231,7 @@
 				3A885EAA22BC5021009FDBDD /* ScheduleVC.swift in Sources */,
 				3A9D8D3122BC4826002F4F65 /* User.swift in Sources */,
 				3AAA0F3822CBBF5800E2FD6E /* LoadingVC.swift in Sources */,
+				3ACA4F9E22D12948004BDB4B /* AppointmentVC.swift in Sources */,
 				3ADCC7B222BC3EFD00F9E580 /* HairPairSchedule.xcdatamodeld in Sources */,
 				3AFC674B22BE9F5400E88D55 /* Appointment.swift in Sources */,
 				3AFC674922BE9CD000E88D55 /* ScheduleCell.swift in Sources */,

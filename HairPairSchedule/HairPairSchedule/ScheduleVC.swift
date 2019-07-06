@@ -48,7 +48,10 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if appointment.price == 0.0 {
             cell.price.text = ""
         } else {
-            cell.price.text = "$\(appointment.price)"
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            let priceStr = formatter.string(from: NSNumber(value: appointment.price))
+            cell.price.text = priceStr
         }
         
         return cell
@@ -64,6 +67,17 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tableView.deselectRow(at: indexPath, animated: true)
-        // self.selectedAppt =
+        self.selectedAppt = self.appointments![indexPath.row]
+        performSegue(withIdentifier: "AppointmentSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "AppointmentSegue":
+            let appointmentVC = segue.destination as! AppointmentVC
+            appointmentVC.appointment = self.selectedAppt
+        default:
+            print("ScheduleVC: default")
+        }
     }
 }
