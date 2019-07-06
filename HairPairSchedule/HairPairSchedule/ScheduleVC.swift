@@ -15,13 +15,13 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var user: User?
     var appointments: [Appointment]?
+    var selectedAppt: Appointment?
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
-            print("set del")
             self.tableView.dataSource = self
             self.tableView.delegate = self
-            self.tableView.rowHeight = UITableView.automaticDimension
+            // self.tableView.rowHeight = UITableView.automaticDimension
             self.tableView.rowHeight = 180.0
         }
     }
@@ -30,7 +30,6 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewDidLoad()
         print("ScheduleVC: viewDidLoad()")
         
-        // self.navigationItem.hidesBackButton = true
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,8 +42,14 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         cell.time.text = appointment.time
         cell.name.text = appointment.name
-        cell.price.text = "$\(appointment.price)"
         cell.details.text = appointment.details
+        
+        // If the price is 0 (empty entry), then just display nothing for the price
+        if appointment.price == 0.0 {
+            cell.price.text = ""
+        } else {
+            cell.price.text = "$\(appointment.price)"
+        }
         
         return cell
     }
@@ -55,5 +60,10 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        // self.selectedAppt =
     }
 }

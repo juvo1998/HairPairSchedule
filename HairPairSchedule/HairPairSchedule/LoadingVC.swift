@@ -40,9 +40,6 @@ class LoadingVC: UIViewController {
         self.date = getDate()
         self.firebase = Database.database().reference()
         load()
-        
-        // Note that this performSegue() should be only done after the last load of data is finished
-        // performSegue(withIdentifier: "ScheduleSegue", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -60,7 +57,6 @@ class LoadingVC: UIViewController {
         // Start loading or creating entries in Firebase
         self.firebase!.child("schedule").child(self.date!).observeSingleEvent(of: .value) { (snapshot) in
             // First, iterate through the times to see if those times exist
-            var counter = 0
             for time in self.times {
                 if !snapshot.hasChild(time) {
                     print("Writing empty entry to Firebase...")
@@ -69,20 +65,17 @@ class LoadingVC: UIViewController {
                     self.firebase!.child("schedule").child(self.date!).child(time).child("details").setValue("")
                 }
                 
-                counter = counter + 1
-                print("Finished writing entry number: \(counter)")
-                if counter == self.times.count {
-                    print("Finished creating all empty slots")
-                    self.readData()
-                }
+                print("Finished writing entry number: \(time)")
             }
+            
+            print("Finished creating all empty slots")
+            self.readData()
         }
     }
     
     func readData() {
         print("Starting to read into appointments array...")
         self.firebase!.child("schedule").child(self.date!).observeSingleEvent(of: .value) { (snapshot) in
-            var counter = 0
             for time in self.times {
                 print("Reading from Firebase...")
                 let name = snapshot.childSnapshot(forPath: "\(time)/name").value as! String
@@ -93,14 +86,12 @@ class LoadingVC: UIViewController {
                 let readableTime = self.getReadableTime(time)
                 let appt = Appointment(time: readableTime, date: self.date!, name: name, price: price, details: details)
                 self.appointments.append(appt)
-                
-                counter = counter + 1
-                print("Finished reading entry number: \(counter)")
-                if counter == self.times.count {
-                    print("Done with all loading!")
-                    self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
-                }
+               
+                print("Finished reading entry number: \(time)")
             }
+            
+            print("Done with all loading!")
+            self.performSegue(withIdentifier: "ScheduleSegue", sender: self)
         }
     }
     
