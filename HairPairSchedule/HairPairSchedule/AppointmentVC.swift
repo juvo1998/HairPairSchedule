@@ -31,6 +31,7 @@ class AppointmentVC: UIViewController {
         
         // Display the price nicely
         let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
         formatter.minimumFractionDigits = 2
         let price = self.appointment!.price
         let priceStr = formatter.string(from: NSNumber(value: price))
@@ -40,8 +41,34 @@ class AppointmentVC: UIViewController {
     }
     
     @IBAction func apply(_ sender: UIBarButtonItem) {
+        // Present a loading screen alert
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let activity = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        activity.style = .gray
+        activity.startAnimating()
+        alert.view.addSubview(activity)
+        present(alert, animated: true)
+        
+        // Commit the changes to Firebase
         let date = getDate()
-        self.firebase!.child("schedule").child(date)
+        let time = getCompactTime(self.appointment!.time)
+        
+        // Pull data from text fields
+        let newName = self.nameField.text!
+        let priceStr = self.priceField.text!
+        let newPrice = Double(priceStr)
+        let newDetails = self.detailsField.text!
+        
+        // Send text field data to Firebase (updating)
+        self.firebase?.child("schedule").child(date).child(time).child("name").setValue(newName)
+        self.firebase?.child("schedule").child(date).child(time).child("price").setValue(newPrice)
+        self.firebase?.child("schedule").child(date).child(time).child("details").setValue(newDetails)
+        
+        // Finish up and update the table view
+        alert.dismiss(animated: false) {
+            // TODO
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func getDate() -> String {
