@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 import Firebase
 
-class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate, AppointmentsReference {
     
     var user: User?
     var appointments: [Appointment]?
@@ -61,6 +61,11 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     
+    func setAppointments(newAppointments: [Appointment]) {
+        self.appointments = newAppointments
+        self.tableView.reloadData()
+    }
+    
     @IBAction func logout(_ sender: UIBarButtonItem) {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -76,6 +81,8 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         case "AppointmentSegue":
             let appointmentVC = segue.destination as! AppointmentVC
             appointmentVC.appointment = self.selectedAppt
+            appointmentVC.appointments = self.appointments
+            appointmentVC.appointmentsDelegate = self
         default:
             print("ScheduleVC: default")
         }

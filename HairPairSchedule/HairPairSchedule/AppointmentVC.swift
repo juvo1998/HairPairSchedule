@@ -11,9 +11,15 @@ import CoreData
 import UIKit
 import Firebase
 
+protocol AppointmentsReference {
+    func setAppointments(newAppointments: [Appointment])
+}
+
 class AppointmentVC: UIViewController {
     
+    var appointmentsDelegate: AppointmentsReference?
     var appointment: Appointment?
+    var appointments: [Appointment]?
     var firebase: DatabaseReference?
     
     @IBOutlet weak var nameField: UITextField!
@@ -64,9 +70,18 @@ class AppointmentVC: UIViewController {
         self.firebase?.child("schedule").child(date).child(time).child("price").setValue(newPrice)
         self.firebase?.child("schedule").child(date).child(time).child("details").setValue(newDetails)
         
-        // Finish up and update the table view
+        // Iterate through appointments list to find the selected appointment
+        for appt in self.appointments! {
+            if appt.time == self.appointment!.time {
+                // Update the appointment in the list
+                appt.name = newName
+                appt.price = newPrice!
+                appt.details = newDetails
+            }
+        }
+        
+        self.appointmentsDelegate!.setAppointments(newAppointments: self.appointments!)
         alert.dismiss(animated: false) {
-            // TODO
             self.navigationController?.popViewController(animated: true)
         }
     }

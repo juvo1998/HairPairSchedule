@@ -33,6 +33,15 @@ class LoginVC: UIViewController {
     }
     
     func loginIfValid(usernameText: String, passwordText: String) {
+        // Present a loading screen alert
+        let loadAlert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        let activity = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        activity.style = .gray
+        activity.startAnimating()
+        loadAlert.view.addSubview(activity)
+        present(loadAlert, animated: true)
+        
+        // Look at Firebase to verify
         self.firebase!.child("users").observeSingleEvent(of: .value) { (snapshot) in
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 
@@ -46,15 +55,20 @@ class LoginVC: UIViewController {
                 if username == usernameText && password == passwordText {
                     let validUser = User(id: id!, name: name, username: username, password: password)
                     self.user = validUser
-                    self.performSegue(withIdentifier: "LoadingSegue", sender: self)
-                    return
+                    
+                    loadAlert.dismiss(animated: false) {
+                        self.performSegue(withIdentifier: "LoadingSegue", sender: self)
+                        return
+                    }
                 }
             }
             
             // If we get here, then invalid username / password
-            let alert = UIAlertController(title: "Could not verify", message: "Your username or password was entered incorrectly.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            loadAlert.dismiss(animated: false) {
+                let alert = UIAlertController(title: "Could not verify", message: "Your username or password was entered incorrectly.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
         }
     }
     
