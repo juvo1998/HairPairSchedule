@@ -228,11 +228,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sy-VO-FVP">
+                                <rect key="frame" x="295" y="410" width="59" height="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Clear all">
+                                    <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearAll:" destination="HI6-Wu-hxn" eventType="touchUpInside" id="EPC-hK-0Nl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="3sy-VO-FVP" firstAttribute="top" secondItem="fC4-gD-gxN" secondAttribute="bottom" constant="39" id="06T-Fw-mZA"/>
                             <constraint firstItem="dGY-Be-KWr" firstAttribute="centerX" secondItem="MhI-mz-q5z" secondAttribute="centerX" id="0wL-09-N9F"/>
                             <constraint firstItem="FXO-uN-sS8" firstAttribute="top" secondItem="nA4-6v-Ne8" secondAttribute="bottom" constant="40" id="5sz-db-MBV"/>
+                            <constraint firstItem="MhI-mz-q5z" firstAttribute="trailing" secondItem="3sy-VO-FVP" secondAttribute="trailing" constant="60" id="8d6-4i-7ZQ"/>
                             <constraint firstItem="vGm-Fx-MMb" firstAttribute="top" secondItem="FXO-uN-sS8" secondAttribute="bottom" id="PyY-Pb-hfI"/>
                             <constraint firstItem="nA4-6v-Ne8" firstAttribute="leading" secondItem="MhI-mz-q5z" secondAttribute="leading" constant="60" id="SLL-ut-CS6"/>
                             <constraint firstItem="FXO-uN-sS8" firstAttribute="centerX" secondItem="MhI-mz-q5z" secondAttribute="centerX" id="WEs-rJ-GhH"/>

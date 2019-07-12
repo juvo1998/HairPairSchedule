@@ -86,6 +86,12 @@ class AppointmentVC: UIViewController {
         }
     }
     
+    @IBAction func clearAll(_ sender: UIButton) {
+        self.nameField.text = ""
+        self.priceField.text = "0.00"
+        self.detailsField.text = ""
+    }
+    
     func getDate() -> String {
         // get the current date and time
         let currentDateTime = Date()
