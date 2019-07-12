@@ -93,7 +93,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i3a-mb-HeN">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="674"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="180" id="Ruw-QE-dRI" customClass="ScheduleCell" customModule="HairPairSchedule" customModuleProvider="target">
@@ -153,13 +153,39 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grand total:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7B-7T-q0A">
+                                <rect key="frame" x="161.5" y="780" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GRAND_TOTAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-ze-LR4">
+                                <rect key="frame" x="90" y="820" width="234" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipN-Hf-eHR">
+                                <rect key="frame" x="0.0" y="762" width="414" height="2"/>
+                                <color key="backgroundColor" red="0.84331824093902663" green="0.84331824093902663" blue="0.84331824093902663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="lcT-cd-ugw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ipN-Hf-eHR" firstAttribute="top" secondItem="i3a-mb-HeN" secondAttribute="bottom" id="5iy-9V-tUe"/>
+                            <constraint firstItem="d7B-7T-q0A" firstAttribute="top" secondItem="i3a-mb-HeN" secondAttribute="bottom" constant="18" id="D2a-Wl-fL6"/>
+                            <constraint firstItem="d7B-7T-q0A" firstAttribute="centerX" secondItem="SPR-If-PbI" secondAttribute="centerX" id="G7j-b8-NqT"/>
                             <constraint firstItem="i3a-mb-HeN" firstAttribute="top" secondItem="SPR-If-PbI" secondAttribute="top" id="HyL-r9-cxf"/>
                             <constraint firstItem="i3a-mb-HeN" firstAttribute="leading" secondItem="SPR-If-PbI" secondAttribute="leading" id="I1p-dY-19g"/>
+                            <constraint firstItem="SPR-If-PbI" firstAttribute="trailing" secondItem="ipN-Hf-eHR" secondAttribute="trailing" id="L00-kW-eaK"/>
                             <constraint firstItem="SPR-If-PbI" firstAttribute="trailing" secondItem="i3a-mb-HeN" secondAttribute="trailing" id="MbN-sE-JHO"/>
-                            <constraint firstItem="SPR-If-PbI" firstAttribute="bottom" secondItem="i3a-mb-HeN" secondAttribute="bottom" id="wsT-D5-Fqw"/>
+                            <constraint firstItem="zbb-ze-LR4" firstAttribute="centerX" secondItem="SPR-If-PbI" secondAttribute="centerX" id="RnW-JI-7bk"/>
+                            <constraint firstItem="zbb-ze-LR4" firstAttribute="top" secondItem="d7B-7T-q0A" secondAttribute="bottom" constant="19" id="a1H-Z0-efX"/>
+                            <constraint firstItem="ipN-Hf-eHR" firstAttribute="leading" secondItem="SPR-If-PbI" secondAttribute="leading" id="onr-xn-HeD"/>
+                            <constraint firstItem="SPR-If-PbI" firstAttribute="bottom" secondItem="i3a-mb-HeN" secondAttribute="bottom" constant="100" id="wsT-D5-Fqw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SPR-If-PbI"/>
                     </view>
@@ -172,6 +198,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="grandTotalLabel" destination="zbb-ze-LR4" id="dqc-Ze-3vZ"/>
                         <outlet property="tableView" destination="i3a-mb-HeN" id="FmB-IJ-rKj"/>
                         <segue destination="HI6-Wu-hxn" kind="show" identifier="AppointmentSegue" id="2Ls-4E-SbY"/>
                     </connections>

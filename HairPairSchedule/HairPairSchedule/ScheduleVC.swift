@@ -26,10 +26,26 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         }
     }
     
+    @IBOutlet weak var grandTotalLabel: UILabel!
+    var grandTotal: Double? {
+        didSet {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            let grandTotalStr = formatter.string(from: NSNumber(value: self.grandTotal!))
+            self.grandTotalLabel.text = grandTotalStr
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("ScheduleVC: viewDidLoad()")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("ScheduleVC: viewWillAppear()")
         
+        calculateGrandTotal()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,5 +102,13 @@ class ScheduleVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
         default:
             print("ScheduleVC: default")
         }
+    }
+    
+    func calculateGrandTotal() {
+        var sum = 0.0
+        for appt in self.appointments! {
+            sum += appt.price
+        }
+        self.grandTotal = sum
     }
 }
